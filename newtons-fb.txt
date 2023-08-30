@@ -1,0 +1,28 @@
+import numpy as np
+x = []
+y = []
+n = int(input("Enter the number of points given"))
+print("Enter x series")
+for i in range(0,n):
+  x.append(int(input()))
+print("x", x)
+print("Enter y series")
+for i in range(0,n):
+  y.append(int(input()))
+print("y", y)
+I = float(input("At which point y is required : "))
+h = float(x[1]-x[0])
+r = (I - x[0])/h
+coeff = r
+sum = y[0]
+k = 1
+print("**FINITE DIFFERENCE TABLE IS**")
+for i in range(len(y),1,-1):
+  y = np.diff(y)
+  print(k, '-Differences')
+  print(y)
+  sum = sum + coeff*y[0]
+  coeff = coeff*(r-k)/(k+1)
+  k = k+1
+print("************")
+print("Interpolated value = ",sum)

@@ -1,0 +1,24 @@
+from sympy import *
+x = Symbol('x')
+f = x**3-2*x-5
+print(f)
+f = lambdify(x,f)
+a = float(input("Enter the first initial guess : "))
+b = float(input("Enter the second initial guess : "))
+n = float(input("Enter the number of iterations : "))
+accuracy = 0.0001
+if f(a)*f(b) < 0:
+  print("roots exits")
+  k=1
+  while(k<=n):
+    c=(a*f(b)-b*f(a))/(f(b)-f(a))
+    print("Iteration = ", k, "Root = ", c)
+    if abs(f(c))<accuracy:
+      break
+    if f(a)*f(c) < 0:
+      b = c
+    elif f(b)*f(c) <0:
+      a = c
+    else:
+      print("RF method fails")
+    k=k+1

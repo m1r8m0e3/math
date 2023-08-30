@@ -1,0 +1,19 @@
+from sympy import * 
+x = Symbol('x')
+f = x**3-2*x-5
+print(f)
+df = f.diff(x)
+print(df)
+f = lambdify(x, f)
+df = lambdify(x, df)
+x = float(input("Enter the first initial guess : "))
+n = float(input("Enter the number of iterations : "))
+accuracy = 0.0001
+k = 1
+while (k<=n):
+  xnew = x - f(x)/df(x)
+  print("Root = ", xnew, "At Iteration = ", k)
+  if abs(xnew-x)<accuracy:
+    break
+  x = xnew
+  k = k+1

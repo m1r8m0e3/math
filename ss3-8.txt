@@ -1,0 +1,23 @@
+from sympy import *
+x = Symbol('x')
+f = 3*x**2
+f = lambdify(x, f)
+n = float(input("Enter th number of strips : "))
+a = float(input("Lower limit = "))
+b = float(input("upper limit = "))
+h = (b-a)/n
+sum = 0
+k = 1
+print("x = %3.4f" %a, "and", "y = %3.4f" %f(a))
+while k < n:
+  x = a+k*h
+  y = f(x)
+  print("x = %3.4f" %x, "and", "y = %3.4f" %y)
+  if k%3 == 0:
+    sum = sum + 2*y
+  else:
+    sum = sum + 3*y
+  k = k+1
+print("x = %3.4f" %b, "and", "y = %3.4f" %f(b))
+I = (3*h/8)*(f(a)+f(b)+sum)
+print("The estimated value of the integral is = ", I)
